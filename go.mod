@@ -23,7 +23,7 @@ require (
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/gosimple/slug v1.9.0 // indirect
 	github.com/jinzhu/configor v1.2.0 // indirect
-	github.com/jinzhu/gorm v1.9.16
+	github.com/conku/gorm v1.9.16
 	github.com/microcosm-cc/bluemonday v1.0.4 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/theplant/cldr v0.0.0-20190423050709-9f76f7ce4ee8 // indirect

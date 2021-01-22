@@ -3,8 +3,8 @@ package publish2
 import (
 	"time"
 
+	"github.com/conku/gorm"
 	"github.com/conku/validations"
-	"github.com/jinzhu/gorm"
 )
 
 type Schedule struct {

@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/conku/gorm"
 	"github.com/conku/publish2"
-	"github.com/jinzhu/gorm"
 )
 
 type Wiki struct {

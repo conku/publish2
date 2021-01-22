@@ -4,15 +4,15 @@
 
 The Publish2 Plugin is the successor to [Publish](https://github.com/conku/publish). It generalizes publishing using 3 important modules:
 
-* Visible: to flag an object be online/offline
-* Schedule: to schedule objects to be online/offline automatically
-* Version: to allow an object to have more than one copies and chain them together
+- Visible: to flag an object be online/offline
+- Schedule: to schedule objects to be online/offline automatically
+- Version: to allow an object to have more than one copies and chain them together
 
 You can read the [Introducing Publish2 blog](http://getqor.com/en/blogs/article/title=introducing-publish2) to understand our design idea in detail.
 
 ## Usage
 
-First, add Publish2 fields to the model. You can choose the module you need, we provide composability here. Please note that it requires [GORM](https://github.com/jinzhu/gorm) as ORM.
+First, add Publish2 fields to the model. You can choose the module you need, we provide composability here. Please note that it requires [GORM](https://github.com/conku/gorm) as ORM.
 
 ```go
 type Product struct {
@@ -54,20 +54,25 @@ The [Publish2](https://github.com/conku/publish2) section will be added to the i
 [Demo Site](http://demo.getqor.com/admin/products)
 
 #### How to publish a product immediately
+
 Tick the `Publish ready` option and leave `Schedule Start At` and `Schedule End At` blank.
 
 #### How to schedule to publish a product
+
 Fill the `Schedule Start At` and `Schedule End At` fields.
 
 The [Publish2](https://github.com/conku/publish2) section in index page
 
 #### How to make a new version of a product
+
 Click the `...` icon(C), you can see a "Create new version" button in the popup.
 
 #### How to view all versions of a product
+
 Click the clock icon(B) to toggle all versions panel.
 
 #### Which version of a product will be live if there’re many version
+
 In all versions panel, the one with green circle(A) icon is the live version.
 
 ## Advanced usage
@@ -152,10 +157,10 @@ type Version struct {
 
 The `VersionName` will be the primary key of the object, So if you set a new `VersionName` for an object, means you will create a new copy. To set a new version name. We have `obj.SetVersionName("new name")`. When an object has multiple versions the database would looks like:
 
-| id | version_name | name |
-| --- | --- | --- |
-| 1 | v1 | Product - v1 |
-| 1 | v2 | Product - v2 |
+| id  | version_name | name         |
+| --- | ------------ | ------------ |
+| 1   | v1           | Product - v1 |
+| 1   | v2           | Product - v2 |
 
 The `VersionPriority` represents the priority of current version. The rule when different versions have overlapped schedule range is, the newer the higher. For example, product A has version 1 for the Christmas(12-20 ~ 12-31) and version 2 for the New Year holiday(12-30 ~ 1-3). At 12-31, the version 2 will be the visible one.
 

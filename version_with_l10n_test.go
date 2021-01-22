@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/conku/gorm"
 	"github.com/conku/l10n"
 	"github.com/conku/publish2"
-	"github.com/jinzhu/gorm"
 )
 
 var dbGlobal, dbCN, dbEN *gorm.DB
