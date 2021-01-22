@@ -149,7 +149,7 @@ func queryCallback(scope *gorm.Scope) {
 			}
 
 			if scheduledCurrentTime == nil {
-				now := gorm.NowFunc()
+				now := time.Unix(gorm.NowFunc(), 0) //rowei
 				scheduledCurrentTime = &now
 			}
 

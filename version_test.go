@@ -122,7 +122,7 @@ func TestVersionsWithOverlappedSchedule(t *testing.T) {
 	}
 
 	var count uint
-	var postIDs = []uint{postV1.ID, postV2.ID}
+	var postIDs = []int64{postV1.ID, postV2.ID}
 	DB.Set(publish2.ScheduledTime, now.Add(-36*time.Hour)).Model(&Post{}).Where("id IN (?)", postIDs).Count(&count)
 	if count != 2 {
 		t.Errorf("should only find 2 valid versions, but got %v", count)
@@ -150,7 +150,7 @@ func TestVersionsWithScheduleRange(t *testing.T) {
 	postV2 := prepareOverlappedPost("post 5 - 2")
 
 	var count uint
-	var postIDs = []uint{postV1.ID, postV2.ID}
+	var postIDs = []int64{postV1.ID, postV2.ID}
 	DB.Set(publish2.ScheduledStart, now.Add(-36*time.Hour)).Set(publish2.ScheduledEnd, now.Add(-6*time.Hour)).Model(&Post{}).Where("id IN (?)", postIDs).Count(&count)
 	if count != 2 {
 		t.Errorf("should only find 2 valid versions in scheduled range, but got %v", count)
@@ -219,7 +219,7 @@ func TestVersionsWithPublishReady(t *testing.T) {
 	DB.Save(&articleV2)
 
 	var count int
-	DB.Model(&Article{}).Where("id IN (?)", []uint{articleV1.ID, articleV2.ID}).Count(&count)
+	DB.Model(&Article{}).Where("id IN (?)", []int64{articleV1.ID, articleV2.ID}).Count(&count)
 	if count != 2 {
 		t.Errorf("Should find two articles, but got %v", count)
 	}
@@ -235,7 +235,7 @@ func TestVersionsWithPublishReady(t *testing.T) {
 		t.Errorf("Should find article w/o version name as no other versions is visible")
 	}
 
-	DB.Set(publish2.VersionMode, publish2.VersionMultipleMode).Model(&Article{}).Where("id IN (?)", []uint{articleV1.ID, articleV2.ID}).Count(&count)
+	DB.Set(publish2.VersionMode, publish2.VersionMultipleMode).Model(&Article{}).Where("id IN (?)", []int64{articleV1.ID, articleV2.ID}).Count(&count)
 	if count != 3 {
 		t.Errorf("Should find 3 visible versions for article, but got %v", count)
 	}
