@@ -84,7 +84,7 @@ Depend on the modules you used, [Publish2](https://github.com/conku/publish2) ca
 This is a SQL sample of select product with language_id is 6. All 3 modules are integrated with `Product`.
 
 ```sql
-SELECT * FROM `products`  WHERE (language_id = '6') AND ((products.id, `products`.version_priority) IN (SELECT products.id, MAX(`products`.version_priority) FROM `products` WHERE (scheduled_start_at IS NULL OR scheduled_start_at <= '2017-02-13 02:04:09') AND (scheduled_end_at IS NULL OR scheduled_end_at >= '2017-02-13 02:04:09') AND publish_ready = 'true' AND deleted_at IS NULL GROUP BY products.id))) ORDER BY `products`.`id`, `products`.version_priority DESC
+SELECT * FROM `products`  WHERE (language_id = '6') AND ((products.id, `products`.version_priority) IN (SELECT products.id, MAX(`products`.version_priority) FROM `products` WHERE (scheduled_start_at IS NULL OR scheduled_start_at <= '2017-02-13 02:04:09') AND (scheduled_end_at IS NULL OR scheduled_end_at >= '2017-02-13 02:04:09') AND publish_ready = 'true' AND deleted_at = 0 GROUP BY products.id))) ORDER BY `products`.`id`, `products`.version_priority DESC
 ```
 
 - Visible: `publish_ready = 'true'`

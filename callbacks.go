@@ -187,7 +187,7 @@ func queryCallback(scope *gorm.Scope) {
 				var primaryKeys []string
 
 				if scope.HasColumn("DeletedAt") {
-					conditions = append(conditions, "deleted_at IS NULL")
+					conditions = append(conditions, "deleted_at = 0")
 				}
 
 				for _, primaryField := range scope.PrimaryFields() {
